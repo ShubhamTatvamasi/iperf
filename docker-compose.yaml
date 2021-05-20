@@ -27,7 +27,7 @@ services:
       - -f
       - m
       - -t
-      - 86400
+      - "86400"
 
 networks:
   iperf_net:
