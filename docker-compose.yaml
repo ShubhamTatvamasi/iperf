@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+  iperf-server:
+    image: shubhamtatvamasi/iperf
+    container_name: iperf-server
+    networks:
+      iperf_net:
+        ipv4_address: 172.51.51.10
+    command:
+      - iperf3
+      - -s
+      - 172.51.51.10
+
+  iperf-client:
+    image: shubhamtatvamasi/iperf
+    container_name: iperf-client
+    depends_on: 
+      - iperf-server
+    networks:
+      iperf_net:
+        ipv4_address: 172.51.51.11
+    command:
+      - iperf3
+      - -c
+      - 172.51.51.10
+      - -f
+      - m
+
+networks:
+  iperf_net:
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.51.51.0/24"
