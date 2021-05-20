@@ -26,6 +26,8 @@ services:
       - 172.51.51.10
       - -f
       - m
+      - -t
+      - 86400
 
 networks:
   iperf_net:
